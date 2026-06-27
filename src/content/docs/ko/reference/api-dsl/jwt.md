@@ -66,7 +66,8 @@ import "github.com/zeromicro/go-zero/rest"
 
 type Config struct {
     rest.RestConf
-    Auth struct {// JWT 서명 키
+    // Auth는 JWT 서명 키와 만료 시간을 설정합니다.
+    Auth struct {
         AccessSecret string
         AccessExpire int64
     }
