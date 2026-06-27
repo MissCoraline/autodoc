@@ -101,7 +101,11 @@ def resolve_links(source: Path, link: str) -> list[Path] | None:
     source_base = source.parent
     candidates = []
     for base in (source_base, route_base):
-        resolved = (base / target).resolve().relative_to(Path.cwd())
+        resolved_absolute = (base / target).resolve()
+        try:
+            resolved = resolved_absolute.relative_to(Path.cwd())
+        except ValueError:
+            resolved = Path("__outside_repo__") / resolved_absolute.as_posix().lstrip("/")
         if resolved not in candidates:
             candidates.append(resolved)
     return candidates

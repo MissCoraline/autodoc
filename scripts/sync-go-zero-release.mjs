@@ -204,7 +204,7 @@ function updateReleaseIndex(locale, tag, date) {
 
   const minor = tag.match(/^v(\d+)\.(\d+)\./);
   const heading = minor ? `## v${minor[1]}.${minor[2]}.x` : '## Other';
-  const line = `- [${tag}](${tag}/) - ${date}`;
+  const line = `- [${tag}](${tag}/) — ${date}`;
 
   if (content.includes(heading)) {
     content = content.replace(`${heading}\n\n`, `${heading}\n\n${line}\n`);
